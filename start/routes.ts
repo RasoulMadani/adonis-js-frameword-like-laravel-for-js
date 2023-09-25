@@ -22,4 +22,19 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
+  return "hello World";
+})
+
+// Route.get('/news',({view})=>{
+
+//   return view.render('news.view');
+// })
+Route.on('/news').render("news.view")
+
+Route.post('/news',({request,response})=>{
+  // console.log(request.body);
+  // console.log('first');
+  // const {email,password} =request.body()
+  // return {email,password,'allah':"allah"};
+  return response.redirect('/news');
 })
