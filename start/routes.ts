@@ -18,23 +18,29 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
+import Route from "@ioc:Adonis/Core/Route";
 
-Route.get('/', async ({ view }) => {
-  return view.render('welcome')
+Route.get("/", async ({ view }) => {
+  return view.render("welcome");
   return "hello World";
-})
+});
 
 // Route.get('/news',({view})=>{
 
 //   return view.render('news.view');
 // })
-Route.on('/news').render("news.view")
+Route.on("/news").render("news.view");
 
-Route.post('/news',({request,response})=>{
+Route.post("/news", ({ request, response }) => {
   // console.log(request.body);
   // console.log('first');
   // const {email,password} =request.body()
   // return {email,password,'allah':"allah"};
-  return response.redirect('/news');
-})
+  return response.redirect("/news");
+});
+Route.delete("/news/:id", ({ params }) => {
+  return params;
+}).where("id", {
+  match: /^[0-9]+$/,
+  cast: (id) => Number(id),
+}).as('news');
