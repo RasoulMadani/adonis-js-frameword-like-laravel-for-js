@@ -7,6 +7,10 @@ export default class ArticlesController {
     // fetch data from db
     const articles = await Database.from("articles").select("*");
     // return articles;
-    return view.render("news.view", { articles });
+    return view.render("article/view", { articles });
+  }
+
+  public async create({ view }) {
+    return view.render("article/create");
   }
 }

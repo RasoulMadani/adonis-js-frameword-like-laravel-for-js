@@ -32,14 +32,18 @@ Route.get("/", async ({ view }) => {
 //   return view.render('news.view');
 // })
 // Route.on("/news").render("news.view");
-
-Route.post("/news", ({ request, response }) => {
+Route.get('/news/create','ArticlesController.create').as("news_create");
+Route.post("/news", ({ request }) => {
+  return request.body();
   // console.log(request.body);
   // console.log('first');
   // const {email,password} =request.body()
   // return {email,password,'allah':"allah"};
-  return response.redirect("/news");
+  // return response.redirect("/news");
+  // return view.render('article.create');
 });
+
+
 Route.delete("/news/:id", ({ params }) => {
   return params;
 })

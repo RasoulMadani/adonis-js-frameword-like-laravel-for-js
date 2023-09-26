@@ -4,3 +4,6 @@ database migration
     3.node ace migration:run
 create controller 
     node ace make:controller Article    
+
+create view
+    node ace make:view news/create
