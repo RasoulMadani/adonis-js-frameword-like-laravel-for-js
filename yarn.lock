@@ -249,7 +249,7 @@
     "@poppinss/utils" "^4.0.4"
     fs-extra "^10.1.0"
 
-"@adonisjs/shield@^7.0.0":
+"@adonisjs/shield@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@adonisjs/shield/-/shield-7.1.1.tgz#4c88a34f3a836c7decd9abfc9c9f8a86cf628252"
   integrity sha512-y1YzXwravcS/A1yxcyfSD/UrRi2+H9v0ntX9NgVhLYvBF5eHuPzQKgv9sICVjmj2z7n94HzcTAio0Rc32EX51Q==

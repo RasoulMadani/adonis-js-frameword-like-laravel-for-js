@@ -32,7 +32,7 @@ Route.get("/", async ({ view }) => {
 //   return view.render('news.view');
 // })
 // Route.on("/news").render("news.view");
-Route.get('/news/create','ArticlesController.create').as("news_create");
+Route.get("/news/create", "ArticlesController.create").as("news_create");
 Route.post("/news", ({ request }) => {
   return request.body();
   // console.log(request.body);
@@ -41,8 +41,7 @@ Route.post("/news", ({ request }) => {
   // return {email,password,'allah':"allah"};
   // return response.redirect("/news");
   // return view.render('article.create');
-});
-
+}).as("news_store");
 
 Route.delete("/news/:id", ({ params }) => {
   return params;
@@ -57,4 +56,4 @@ Route.delete("/news/:id", ({ params }) => {
 //   return new ArticlesController().view(ctx);
 // }).as("news_view");
 
-Route.get("/news",'ArticlesController.view').as("news_view");
+Route.get("/news", "ArticlesController.view").as("news_view");
