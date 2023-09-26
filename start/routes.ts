@@ -33,15 +33,8 @@ Route.get("/", async ({ view }) => {
 // })
 // Route.on("/news").render("news.view");
 Route.get("/news/create", "ArticlesController.create").as("news_create");
-Route.post("/news", ({ request }) => {
-  return request.body();
-  // console.log(request.body);
-  // console.log('first');
-  // const {email,password} =request.body()
-  // return {email,password,'allah':"allah"};
-  // return response.redirect("/news");
-  // return view.render('article.create');
-}).as("news_store");
+
+Route.post('/news','ArticlesController.store').as("news_store");
 
 Route.delete("/news/:id", ({ params }) => {
   return params;
