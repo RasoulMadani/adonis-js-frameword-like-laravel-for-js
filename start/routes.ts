@@ -19,6 +19,7 @@
 */
 
 import Route from "@ioc:Adonis/Core/Route";
+import Database from "@ioc:Adonis/Lucid/Database";
 
 Route.get("/", async ({ view }) => {
   return view.render("welcome");
@@ -29,7 +30,7 @@ Route.get("/", async ({ view }) => {
 
 //   return view.render('news.view');
 // })
-Route.on("/news").render("news.view");
+// Route.on("/news").render("news.view");
 
 Route.post("/news", ({ request, response }) => {
   // console.log(request.body);
@@ -40,7 +41,16 @@ Route.post("/news", ({ request, response }) => {
 });
 Route.delete("/news/:id", ({ params }) => {
   return params;
-}).where("id", {
-  match: /^[0-9]+$/,
-  cast: (id) => Number(id),
-}).as('news');
+})
+  .where("id", {
+    match: /^[0-9]+$/,
+    cast: (id) => Number(id),
+  })
+  .as("news");
+
+Route.get("/news", async({ view }) => {
+  // fetch data from db
+  const articles = await Database.from("articles").select("*");
+  // return articles;
+  return view.render("news.view",{articles});
+}).as("news_view");
