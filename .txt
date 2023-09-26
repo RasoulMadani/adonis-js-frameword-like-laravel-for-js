@@ -2,3 +2,5 @@ database migration
     1.yarn add @adonisjs/lucid
     2.node ace make:migration articles
     3.node ace migration:run
+create controller 
+    node ace make:controller Article    

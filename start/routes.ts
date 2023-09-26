@@ -19,7 +19,8 @@
 */
 
 import Route from "@ioc:Adonis/Core/Route";
-import Database from "@ioc:Adonis/Lucid/Database";
+
+import ArticlesController from "App/Controllers/Http/ArticlesController";
 
 Route.get("/", async ({ view }) => {
   return view.render("welcome");
@@ -48,9 +49,8 @@ Route.delete("/news/:id", ({ params }) => {
   })
   .as("news");
 
-Route.get("/news", async({ view }) => {
-  // fetch data from db
-  const articles = await Database.from("articles").select("*");
-  // return articles;
-  return view.render("news.view",{articles});
-}).as("news_view");
+// Route.get("/news", (ctx) => {
+//   return new ArticlesController().view(ctx);
+// }).as("news_view");
+
+Route.get("/news",'ArticlesController.view').as("news_view");
