@@ -11,3 +11,5 @@ csrf token
     yarn add @adonisjs/shield
 create validator 
     node ace make:validator CreateArticle
+create edit view
+    node ace make:view article/edit

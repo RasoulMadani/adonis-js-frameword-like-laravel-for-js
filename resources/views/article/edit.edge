@@ -1,0 +1,21 @@
+@layout('layouts.main')
+@section('content')
+<h1>Update this Article</h1>
+<form action="{{route("news_update",[article.slug])}}" method="POST">
+    {{csrfField()}}
+    <input type="text" value="{{article.title}}" name="title" placeholder="Article title" />
+    @if(flashMessages.has('errors.title'))
+    <p> {{ flashMessages.get('errors.title') }} </p>
+    @end
+
+    <input type="file" name="image" />
+    @if(flashMessages.has('errors.image'))
+    <p> {{ flashMessages.get('errors.image') }} </p>
+    @end
+    <textarea name="content" id="" value placeholder="Article Content">{{article.content}}</textarea>
+    @if(flashMessages.has('errors.content'))
+    <p> {{ flashMessages.get('errors.content') }} </p>
+    @end
+    <button type="submit">Create</button>
+</form>
+@end

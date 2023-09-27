@@ -29,21 +29,15 @@ Route.get("/", async ({ view }) => {
 
 // Route.get('/news',({view})=>{
 
-//   return view.render('news.view');
+  // return view.render('');
 // })
 // Route.on("/news").render("news.view");
 Route.get("/news/create", "ArticlesController.create").as("news_create");
 
-Route.post('/news','ArticlesController.store').as("news_store");
+Route.post("/news", "ArticlesController.store").as("news_store");
+Route.get("/news/:slug/edit", "ArticlesController.edit").as("news_edit");
 
-Route.delete("/news/:id", ({ params }) => {
-  return params;
-})
-  .where("id", {
-    match: /^[0-9]+$/,
-    cast: (id) => Number(id),
-  })
-  .as("news");
+Route.patch("/news/:slug",'ArticlesController.update').as("news_update");
 
 // Route.get("/news", (ctx) => {
 //   return new ArticlesController().view(ctx);

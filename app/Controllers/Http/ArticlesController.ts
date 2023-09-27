@@ -32,4 +32,21 @@ export default class ArticlesController {
     });
     return response.redirect().back();
   }
+  /**
+   * edit
+{view}   
+return view.render*/
+  public async edit({view,params}) {
+    const {slug} = params;
+    // return slug;
+    const article = await Database.from('articles').where('slug',slug).first();
+    return view.render('article/edit',{article});
+    
+  }
+  /**
+   * update
+   */
+  public update() {
+    ////
+  }
 }
