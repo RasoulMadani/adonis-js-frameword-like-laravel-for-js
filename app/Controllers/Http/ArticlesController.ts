@@ -46,7 +46,10 @@ return view.render*/
   /**
    * update
    */
-  public update() {
-    ////
+  public async update({request,response,params}) {
+    // return 'allah';
+    const payload = await request.validate(CreateArticleValidator);
+    await Database.from('articles').where('slug',params.slug).update(payload);
+    return response.redirect().back();
   }
 }
