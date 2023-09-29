@@ -19,3 +19,8 @@ create authentication
     yarn add @adonisjs/auth
     node ace configure @adonisjs/auth
     node ace migration:run
+    yarn add phc-argon2
+create user in repl
+    node ace repl
+    import User from 'App/Models/user'
+    await  User.create({'email':'allah@allah.com','password': 'password'})
