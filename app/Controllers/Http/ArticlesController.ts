@@ -58,7 +58,8 @@ return view.render*/
   public async update({request,response,params}) {
     // return 'allah';
     const payload = await request.validate(CreateArticleValidator);
-    await Database.from('articles').where('slug',params.slug).update(payload);
+    // await Database.from('articles').where('slug',params.slug).update(payload);
+    await Article.query().where('slug',params.slug).update(payload);
     return response.redirect().back();
   }
   public async destroy({params,response}){
