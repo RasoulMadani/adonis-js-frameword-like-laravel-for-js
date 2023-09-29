@@ -13,6 +13,10 @@ export default class ArticlesController {
   public async create({ view }) {
     return view.render("article/create");
   }
+  public async show({params,view}){
+    const article =  await Database.from('articles').where("slug",params.slug).first(); 
+    return view.render('article/show',{article});
+  }
   public async store({ response, request }) {
 
     // try {
