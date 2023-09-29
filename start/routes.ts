@@ -27,14 +27,15 @@ Route.get("/", async ({ view }) => {
   return "hello World";
 });
 
+Route.resource('news','ArticlesController').paramFor('news','slug');
 
-Route.get("/news/create", "ArticlesController.create").as("news_create");
+// Route.get("/news/create", "ArticlesController.create").as("news_create");
 
-Route.post("/news", "ArticlesController.store").as("news_store");
-Route.get("/news/:slug/edit", "ArticlesController.edit").as("news_edit");
+// Route.post("/news", "ArticlesController.store").as("news_store");
+// Route.get("/news/:slug/edit", "ArticlesController.edit").as("news_edit");
 
-Route.patch("/news/:slug",'ArticlesController.update').as("news_update");
-Route.delete("/news/:slug",'ArticlesController.destroy').as("news_delete");
+// Route.patch("/news/:slug",'ArticlesController.update').as("news_update");
+// Route.delete("/news/:slug",'ArticlesController.destroy').as("news_delete");
 
 
-Route.get("/news", "ArticlesController.view").as("news_view");
+// Route.get("/news", "ArticlesController.view").as("news_view");

@@ -3,7 +3,7 @@
 import Database from "@ioc:Adonis/Lucid/Database";
 import CreateArticleValidator from "App/Validators/CreateArticleValidator";
 export default class ArticlesController {
-  public async view({ view }) {
+  public async index({ view }) {
     // fetch data from db
     const articles = await Database.from("articles").select("*");
     // return articles;
