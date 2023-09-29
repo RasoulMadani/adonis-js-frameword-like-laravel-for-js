@@ -15,3 +15,7 @@ create edit view
     node ace make:view article/edit
 create model 
     node ace make:model Article
+create authentication 
+    yarn add @adonisjs/auth
+    node ace configure @adonisjs/auth
+    node ace migration:run
