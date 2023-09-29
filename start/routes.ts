@@ -34,6 +34,7 @@ Route.post("/news", "ArticlesController.store").as("news_store");
 Route.get("/news/:slug/edit", "ArticlesController.edit").as("news_edit");
 
 Route.patch("/news/:slug",'ArticlesController.update').as("news_update");
+Route.delete("/news/:slug",'ArticlesController.destroy').as("news_delete");
 
 
 Route.get("/news", "ArticlesController.view").as("news_view");

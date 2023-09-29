@@ -30,6 +30,7 @@ export default class ArticlesController {
       ...payload,
       slug: payload.title,
     });
+    return response.redirect().toPath('/news');
     return response.redirect().back();
   }
   /**
@@ -50,6 +51,10 @@ return view.render*/
     // return 'allah';
     const payload = await request.validate(CreateArticleValidator);
     await Database.from('articles').where('slug',params.slug).update(payload);
+    return response.redirect().back();
+  }
+  public async destroy({params,response}){
+    await Database.from('articles').where('slug',params.slug).delete();
     return response.redirect().back();
   }
 }
