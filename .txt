@@ -13,3 +13,5 @@ create validator
     node ace make:validator CreateArticle
 create edit view
     node ace make:view article/edit
+create model 
+    node ace make:model Article

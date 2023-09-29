@@ -1,11 +1,13 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Database from "@ioc:Adonis/Lucid/Database";
+import Article from "App/Models/Article";
 import CreateArticleValidator from "App/Validators/CreateArticleValidator";
 export default class ArticlesController {
   public async index({ view }) {
     // fetch data from db
-    const articles = await Database.from("articles").select("*");
+    // const articles = await Database.from("articles").select("*");
+    const articles = await Article.all();
     // return articles;
     return view.render("article/view", { articles });
   }
@@ -14,7 +16,8 @@ export default class ArticlesController {
     return view.render("article/create");
   }
   public async show({params,view}){
-    const article =  await Database.from('articles').where("slug",params.slug).first(); 
+    // const article =  await Database.from('articles').where("slug",params.slug).first(); 
+    const article = await Article.findBy('slug',params.slug);
     return view.render('article/show',{article});
   }
   public async store({ response, request }) {
@@ -44,7 +47,8 @@ return view.render*/
   public async edit({view,params}) {
     const {slug} = params;
     // return slug;
-    const article = await Database.from('articles').where('slug',slug).first();
+    // const article = await Database.from('articles').where('slug',slug).first();
+    const article = await Article.findBy('slug',slug);
     return view.render('article/edit',{article});
     
   }
@@ -58,7 +62,12 @@ return view.render*/
     return response.redirect().back();
   }
   public async destroy({params,response}){
-    await Database.from('articles').where('slug',params.slug).delete();
-    return response.redirect().back();
+    // await Database.from('articles').where('slug',params.slug).delete();
+
+    const article = await Article.findBy('slug',params.slug);
+    if(article){
+      article.delete();
+      return response.redirect().back();
+    } 
   }
 }
