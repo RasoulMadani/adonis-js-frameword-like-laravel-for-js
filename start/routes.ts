@@ -19,16 +19,21 @@
 */
 
 import Route from "@ioc:Adonis/Core/Route";
-
-
+Route.group(() => {
+  Route.resource("news", "ArticlesController").paramFor("news", "slug");
+}).middleware("auth");
 
 Route.get("/", async ({ view }) => {
   return view.render("welcome");
-  return "hello World";
 });
+Route.on("/login").render("auth/login").as("auth.login");
 
-Route.resource('news','ArticlesController').paramFor('news','slug');
-
+Route.post("/login", async ({ auth, request, response }) => {
+  const email = request.input("email");
+  const password = request.input("password");
+  await auth.use("web").attempt(email, password);
+  return response.redirect().toPath("/");
+});
 // Route.get("/news/create", "ArticlesController.create").as("news_create");
 
 // Route.post("/news", "ArticlesController.store").as("news_store");
@@ -36,6 +41,5 @@ Route.resource('news','ArticlesController').paramFor('news','slug');
 
 // Route.patch("/news/:slug",'ArticlesController.update').as("news_update");
 // Route.delete("/news/:slug",'ArticlesController.destroy').as("news_delete");
-
 
 // Route.get("/news", "ArticlesController.view").as("news_view");
