@@ -19,9 +19,20 @@
 */
 
 import Route from "@ioc:Adonis/Core/Route";
-Route.group(() => {
-  Route.resource("news", "ArticlesController").paramFor("news", "slug");
-}).middleware("auth");
+// Route.group(() => {
+//   Route.resource("news", "ArticlesController").paramFor("news", "slug");
+// }).middleware("auth");
+
+// اختصاصی کردن احراز هویت برای توابع ریسورس خاص
+
+Route.resource("news", "ArticlesController")
+  .paramFor("news", "slug")
+  .middleware({
+    edit: ['auth'],
+    create: ["auth"],
+    store: ["auth"],
+    destroy: ["auth"],
+  });
 
 Route.get("/", async ({ view }) => {
   return view.render("welcome");
@@ -34,6 +45,11 @@ Route.post("/login", async ({ auth, request, response }) => {
   await auth.use("web").attempt(email, password);
   return response.redirect().toPath("/");
 });
+
+Route.post("/logout", async ({ auth, response }) => {
+  await auth.use("web").logout();
+  response.redirect("/login");
+}).as("auth.logout");
 // Route.get("/news/create", "ArticlesController.create").as("news_create");
 
 // Route.post("/news", "ArticlesController.store").as("news_store");
