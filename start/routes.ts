@@ -50,6 +50,7 @@ Route.post("/logout", async ({ auth, response }) => {
   await auth.use("web").logout();
   response.redirect("/login");
 }).as("auth.logout");
+
 // Route.get("/news/create", "ArticlesController.create").as("news_create");
 
 // Route.post("/news", "ArticlesController.store").as("news_store");

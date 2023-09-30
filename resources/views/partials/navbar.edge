@@ -8,7 +8,10 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="{{route('news.index')}}">News</a>
+                
+                @if(auth.isLoggedIn)
                 <a class="nav-link" href="{{route('news.create')}}">Create</a>
+                @end
                 @if(auth.isLoggedIn)
                 <form action="{{route('auth.logout')}}" method="POST">
                     {{csrfField()}}
